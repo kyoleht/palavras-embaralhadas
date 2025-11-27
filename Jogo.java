@@ -1,5 +1,6 @@
 
 import java.util.Random;
+import java.util.Scanner;
 
 
 public class Jogo {
@@ -27,12 +28,37 @@ public class Jogo {
             letras[j] = temp;
         }
 
+        Scanner scanner = new Scanner(System.in);
         String palavraEmbaralhada = new String(letras);
-        System.out.println("Palavra embaralhada: " + palavraEmbaralhada);
-
-        // while 
         
-    }
-}
+        int tentativasRestantes = 3;
+        boolean acertou = false;
+        
+        while (tentativasRestantes > 0 && !acertou) {
 
-// pegar a palavra escolhida, percorrer pelas letras, transformar em int para ficar mais fácil de move-lás, utilizar random (eu acho) para embaralha-las, 
+            System.out.println("Digite sua tentativa: ");
+            System.out.println("Tentativas restantes: " + tentativasRestantes);
+            System.out.println("Palavra embaralhada: " + palavraEmbaralhada);
+            System.out.println("");
+            String palavraDigitada = scanner.nextLine();
+
+            if(palavraDigitada.equals(palavraEscolhida)) {
+                acertou = true;
+            } else {
+                System.out.println("");
+                System.out.println("Palavra errada!");
+                tentativasRestantes--;
+            }
+
+        }
+
+        if(acertou) {
+            System.out.println("");
+            System.out.println("Parabéns! Você acertou.");
+        }
+
+        if(tentativasRestantes == 0) {
+            System.out.println("Você não conseguiu. A palavra certa era: " + palavraEscolhida);
+        }
+    }
+} 
